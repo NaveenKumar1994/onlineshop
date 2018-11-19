@@ -9,11 +9,10 @@
 <body>
 
 <h1> Search for friend</h1>
-<form name="searchForm" action="search" method="get">
-<input type="text" value="" name="catName" id="catName" />
-<br>
-<input type="submit" name="submit" value="Search" />
-
+<form  action="./getproduct" method="post">
+			Super shop </font> <input type="text" name="name"> 
+				<input type="submit" value="Search">
+			</form>
 </form>
 </body>
 </html>

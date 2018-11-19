@@ -89,8 +89,9 @@ button {
 </nav>
 <h1 class= "name">
       Super Shop</h1>
-<form class = "search-form" action= ""method="get">
-<input type = "text" placeholder = "Search...">
+<form class = "search-form" action= "./catName" method="POST">
+<input type="text" value="" name="catName" id="catName" />
+
 <button> Search</button>
 </form>
 </body>

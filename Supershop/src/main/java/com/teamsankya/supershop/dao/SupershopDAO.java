@@ -14,6 +14,6 @@ public interface SupershopDAO {
 	 * @param id
 	 * @return the Object of LotBean
 	 */
-	public List<SupershopBean> getId(String cat_name);
+	public List<SupershopBean> getId(String catName);
 
 }

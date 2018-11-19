@@ -2,13 +2,17 @@ package com.teamsankya.supershop.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamsankya.supershop.dto.SupershopBean;
 import com.teamsankya.supershop.service.SupershopService;
@@ -28,6 +32,7 @@ import com.teamsankya.supershop.service.SupershopServiceImpl;
  */
 
 @Controller
+@Transactional
 public class SupershopController {
 	
 	@Autowired
@@ -36,14 +41,26 @@ public class SupershopController {
 	
 	final static Logger LOGGER = Logger.getLogger(SupershopController.class);
 	
-	@RequestMapping(path= "catName", method = RequestMethod.GET )
-	public List<SupershopBean> getId(String catName) {
+	@RequestMapping(path= "/catName", method = RequestMethod.POST )
+	public String getId(Model map,@RequestParam("catName") String catName) {
 		LOGGER.info("Inside controller");
 		LOGGER.info(catName);
-		SupershopServiceImpl supershopService = new SupershopServiceImpl();
+//		SupershopServiceImpl supershopService = new SupershopServiceImpl();
 		List<SupershopBean> beans = supershopService.getId(catName);
+		map.addAttribute("superBean", beans);
+		if(beans.size() ==0) {
+
+			LOGGER.info(" inside controller failure block");
+			return "failure";
+		}
+		LOGGER.info("The product : "+beans);
+		LOGGER.info("inside controller success block");
 		
-		return beans;
+		
+		return "success";
+
+
+		
 	}
 
 

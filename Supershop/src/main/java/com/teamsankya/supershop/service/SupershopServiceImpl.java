@@ -2,6 +2,7 @@ package com.teamsankya.supershop.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -24,14 +25,24 @@ public class SupershopServiceImpl implements SupershopService {
 	@Autowired
 	@Qualifier("dao")
     SupershopDAO supershopDAO;
+	final static Logger LOGGER = Logger.getLogger(SupershopServiceImpl.class);
     
-    
+	public SupershopServiceImpl() {
+		
+	}
+	
+	
+
     /**
 	 * This method interacts with the database and get the catName.
 	 */
 	@Override
 	public List<SupershopBean> getId(String catName) {
-		SupershopDAOHibernateImpl supershopDAO = new SupershopDAOHibernateImpl();
+		LOGGER.info("inside SupersshopServiceImpl ");
+		
+		LOGGER.info("service product :"+catName);
+		
+//		SupershopDAOHibernateImpl supershopDAO = new SupershopDAOHibernateImpl();
 		return supershopDAO.getId(catName);
 	}
 

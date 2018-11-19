@@ -13,23 +13,30 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
     http://www.springframework.org/schema/tx 
     http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
- 
-    
-<context:component-scan base-package="com.teamsankya.supershop"/>
-<mvc:annotation-driven/>
+
+
+	<context:component-scan base-package="com.teamsankya.supershop"></context:component-scan>
+	<mvc:annotation-driven />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="57978000" />
+	</bean>
+
 	<bean class="com.teamsankya.supershop.service.SupershopService"
-	name="service"/>
-	
-	<bean class="com.teamsankya.supershop.dao.SupershopDAOHibernateImpl"
-	name="dao"/>
-	
-<bean id="dataSource"
+		name="service" />
+
+	<bean
+		class="com.teamsankya.supershop.dao.SupershopDAOHibernateImpl"
+		name="dao" />
+	<mvc:annotation-driven />
+
+	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
@@ -59,4 +66,5 @@
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<tx:annotation-driven />
 </beans>
